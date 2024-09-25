@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Disease Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poetsen+One&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Lato", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    
+       
+        body {
+            background-image: url("{% static 'image1.png' %}"); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #1b1919;
+        }
+    
+  
+        .navbar {
+            background-color: #003366;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        .navbar-brand {
+            color: #fff !important;
+            font-family: 'Rowdies', cursive;
+            text-transform: uppercase;
+        }
+    
+        .navbar-brand:hover,
+        .nav-link:hover {
+            color: #c0c0c0 !important;
+        }
+    
+        .navbar-toggler {
+            border: none;
+        }
+    
+        .navbar-toggler-icon {
+            background-image: url("https://img.icons8.com/material-outlined/24/ffffff/menu.png");
+        }
+    
+       
+        .main-content {
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 50px 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    
+        .main-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #151414;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+    
+        .main-content h4 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #131313;
+            text-align: center;
+        }
+    
+        /* Flex Container for Form and Info */
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
+            flex-wrap: wrap;
+            gap: 20px; 
+        }
+    
+        .content-section {
+            flex: 1;
+            padding: 20px;
+        }
+    
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+    
+        .upload {
+            font-size: 1rem;
+            background-color: #003366;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+    
+        .upload:hover {
+            background-color: #00509e;
+            transition: background-color 0.3s ease;
+        }
+    
+        button {
+            padding: 15px 30px;
+            background-color: #00509e;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #003366;
+        }
+    
+  
+        .disease-info {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .disease-info h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #003366;
+        }
+    
+        .disease-info p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+    
+        .medicine-products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+    
+        .medicine-products .product-item {
+            text-align: center;
+            width: 150px;
+        }
+    
+        .medicine-products img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    
+        .medicine-products p {
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <a class="navbar-brand" href="/">Plant Disease Prediction</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'disease_recognition' %}">DISEASE RECOGNITION</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="main-content">
+        <h1>Welcome to Plant Disease Prediction</h1>
+        <h4>Upload an image of leaf to predict the disease</h4>
+        <div class="content-wrapper">
+            <div class="content-section">
+                <br>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="image" class="upload" required>
+                    <button type="submit">Predict</button>
+                    {% if image_url %}
+                    <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 100%; margin-top: 20px; border: 2px solid #ddd; border-radius: 10px;">
+                    {% endif %}
+                </form>
+            </div>
+            {% if result %}
+            <div class="content-section">
+                <div class="disease-info">
+                    <h3>Predicted Disease: {{ result }}</h3>
+                    <p><strong>Description:</strong> {{ description.disease }}</p>
+                    <p><strong>Details:</strong> {{ description.description }}</p>
+                    <p><strong>Solution:</strong> {{ description.solution }}</p>
+                    <p><strong>Prevention:</strong> {{ description.prevention }}</p>
+                    {% if description.medicine_products %}
+                    <div class="medicine-products">
+                        {% for product in description.medicine_products %}
+                        <div class="product-item">
+                            <img src="{{ product.image }}" alt="{{ product.name }}">
+                            <p>{{ product.name }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+</body>
+</html>

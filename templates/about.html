@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poetsen+One&display=swap" rel="stylesheet">
+<style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: "Lato", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .navbar {
+            background-color: #003366;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+
+        .navbar-brand:hover, .nav-link:hover {
+            color: #c0c0c0 !important;
+        }
+
+        .carousel-inner img {
+            height: 70vh;
+        }
+
+        .carousel-caption {
+            background: rgba(24, 25, 26, 0.5);
+            border-radius: 10px;
+        }
+
+        .carousel-caption h3 {
+            font-family: 'Rowdies', cursive;
+            color: rgb(151, 220, 232);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .carousel-caption p {
+            padding: 7px;
+        }
+        .details {
+            text-align: center;
+            background-color: rgba(240, 248, 255, 0.8);
+            padding: 50px 20px;
+            border-radius: 10px;
+        }
+
+        .details h1 {
+            color: #003366;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background-color: rgb(1, 79, 93);
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .details h2 {
+            position: relative;
+            top: 100px;
+            margin: auto;
+            color: rgb(18, 231, 231);
+            font-size: 5rem;
+        }
+
+       
+        .gallery-h1 {
+            background-color: rgba(240, 248, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-h1 h1 {
+            color: #003366;
+            font-size: 2rem;
+        }
+
+        .img-thumbnail {
+            height: 200px;
+            border-radius: 15px;
+        }
+
+        .Content-h5 {
+            background-color: #003366;
+            color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .disease-table {
+            margin: 50px auto;
+            width: 80%;
+            background-color: rgba(248, 249, 250, 0.8);
+            border-collapse: collapse;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .disease-table th, .disease-table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .disease-table th {
+            background-color: #003366;
+            color: white;
+        }
+
+        .disease-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .disease-table tr:hover {
+            background-color: #ddd;
+        }
+
+       
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <a class="navbar-brand" href="/" style="color: #fff; font-family: 'Rowdies', cursive;" >PLANT DISEASE PREDICTION</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto" style="color: #fff; font-family: 'Rowdies', cursive;" >
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'disease_recognition' %}">DISEASE RECOGNITION</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="details">
+        <br>
+        <h1>About Plant Disease Prediction</h1>
+        <h5>Our website leverages advanced deep learning model  CNN to predict and classify crop diseases. Simply upload an image of the crop(leaf), and our AI system will provide you with the disease diagnosis and potential remedies. This helps farmers in timely and accurate identification of crop diseases, leading to better crop management and yield.</h5>
+    </section>
+
+    <section class="gallery-h1">
+        <h1>Detected Diseases</h1>
+        <table class="table disease-table">
+            <thead>
+                <tr>
+                    <th>Crop</th>
+                    <th>Disease</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for crop, disease, description in disease_data %}
+                <tr>
+                    <td>{{ crop }}</td>
+                    <td>{{ disease }}</td>
+                    <td>{{ description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <div class="container Content-h5">
+            <h4>Plant Disease Image Classification and Prediction with Deep Learning</h4>
+        </div>
+    </section>
+</body>
+</html>

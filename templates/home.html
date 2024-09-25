@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poetsen+One&display=swap" rel="stylesheet">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.a {
+    color: #fff;
+    font-family: 'Rowdies', cursive; 
+    text-transform: uppercase;
+}
+
+.gallery-section {
+    padding: 30px 0;
+    width: 100%;
+    background-color: #f0f8ff;
+}
+
+.gallery-section .container-fluid {
+    max-width: 1200px;
+    padding: 0 15px;
+}
+
+.gallery-h1 {
+    font-size: 2rem;
+    color: #003366;
+    margin-bottom: 30px;
+    background-color: #f0f8ff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.gallery-h1 h1 {
+    color: #003366;
+    font-size: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item:hover img {
+    opacity: 0.7;
+}
+
+@media (min-width: 1024px) {
+    .gallery-item {
+        width: 25%;
+    }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+    .gallery-item {
+        width: 33.33%;
+    }
+}
+
+
+.navbar {
+    background-color: #003366;
+}
+
+.navbar-brand, .nav-link {
+    color: #fff !important;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #c0c0c0 !important;
+}
+
+.carousel-inner img {
+    height: 70vh;
+}
+
+.carousel-caption h3 {
+    font-family: 'Rowdies', cursive;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 3rem;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+}
+
+.details {
+    text-align: center;
+    background-color: #f0f8ff;
+    padding: 50px 20px;
+}
+
+.details h1 {
+    color: #003366;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.details h4 {
+    color: #003366;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.Content-h5 {
+    background-color: #003366;
+    color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="/" style="color: #fff; font-family: 'Rowdies', cursive;">PLANT DISEASE PREDICTION</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto" style="color: #fff; font-family: 'Rowdies', cursive; ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'disease_recognition' %}">DISEASE RECOGNITION</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/img1.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Plant Disease Prediction AI Web App</h3>
+                        <p>Many veterans said that Deep Learning and AI are a threat to our world, but if we use them properly, we can do many good things today. We will see a small example of this in crop farming. Find out about the disease.</p>
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+    </header>
+
+    <section class="gallery-section">
+        <div class="container-fluid">
+            <div class="gallery-h1 text-center">
+                <h1>Image Gallery</h1>
+                <hr class="mt-2 mb-5">
+            </div>
+            <div class="row justify-content-center">
+                <div class="  gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/image3.png' %}" alt="Gallery Image 1">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/Gallery2.jpg' %}" alt="Gallery Image 2">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/Gallery3.jpg' %}" alt="Gallery Image 3">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/Gallery4.jpg' %}" alt="Gallery Image 4">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#">
+                        <img  src="{% static 'images/Gallery5.jpeg' %}" alt="Gallery Image 5">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/Gallery6.jpg' %}" alt="Gallery Image 5">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/image4.png' %}" alt="Gallery Image 5">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/image5.png' %}" alt="Gallery Image 5">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/image6.png' %}" alt="Gallery Image 5">
+                    </a>
+                </div>
+                <div class=" gallery-item">
+                    <a href="#" >
+                        <img  src="{% static 'images/image7.png' %}" alt="Gallery Image 5">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>    
+</body>
+</html>
