@@ -1,1 +1,2 @@
 # PLANTS-DISEASES-DETECTION
+This project is a deep learning-based plant disease detection system built using Django (for the web framework) and Convolutional Neural Networks (CNNs) (for image classification). Users can upload images of plant leaves, and the system will analyze them to detect diseases using a pre-trained CNN model. The project utilizes TensorFlow/Keras for model training, OpenCV for image processing, and Django for the backend
